@@ -1,0 +1,61 @@
+---
+# Model Configuration for BioAI Disease Prediction System
+
+# Random Forest Model Configuration
+random_forest:
+  n_estimators: 100
+  max_depth: 10
+  min_samples_split: 2
+  min_samples_leaf: 1
+  bootstrap: true
+  criterion: 'gini'
+  random_state: 42
+  class_weight: 'balanced'
+  verbose: 0
+
+# Training Configuration
+training:
+  test_size: 0.2
+  validation_size: 0.1
+  shuffle: true
+  stratify: true
+  random_state: 42
+
+# Feedback Learning Configuration
+feedback:
+  learning_rate: 0.01
+  min_feedback_samples: 10
+  retraining_threshold: 50
+  confidence_threshold: 0.7
+  max_feedback_memory: 1000
+
+# Prediction Configuration
+prediction:
+  confidence_threshold: 0.6
+  max_diagnoses: 5
+  symptom_weight_multiplier: 1.2
+
+# Progression Prediction Configuration
+progression:
+  time_points: ['Initial', 'Week 1', 'Week 2', 'Week 3', 'Week 4', 'Week 6']
+  severity_scale: 10
+  treatment_effect_multiplier: 0.8
+  optimistic_multiplier: 0.6
+  untreated_multiplier: 1.1
+
+# Logging Configuration
+logging:
+  level: 'INFO'
+  format: '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+  file: 'logs/bioai.log'
+  max_size: 10485760  # 10MB
+  backup_count: 5
+
+# API Configuration
+api:
+  host: '0.0.0.0'
+  port: 5000
+  debug: false
+  workers: 4
+  timeout: 30
+  rate_limit: 100  # requests per minute

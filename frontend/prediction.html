@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disease Prediction - BioAI</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <a href="index.html" class="logo">Bio<span>AI</span></a>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="prediction.html" class="active">Disease Prediction</a></li>
+                    <li><a href="index.html#about">About</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Prediction Form Section -->
+    <section class="prediction-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Disease Prediction</h2>
+                <p>Enter your symptoms and information below to get a prediction.</p>
+            </div>
+            
+            <div class="prediction-form">
+                <form id="prediction-form">
+                    <!-- Personal Information -->
+                    <h3>Personal Information</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="age">Age</label>
+                            <input type="number" id="age" name="age" class="form-control" min="0" max="120" required onchange="validateAge(this)">
+                        </div>
+                        <div class="form-group">
+                            <label for="gender">Gender</label>
+                            <select id="gender" name="gender" class="form-control" required>
+                                <option value="">Select Gender</option>
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <!-- Vital Signs -->
+                    <h3>Vital Signs</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="temperature">Body Temperature (°C)</label>
+                            <input type="number" id="temperature" name="temperature" class="form-control" step="0.1" min="35" max="42" onchange="validateTemperature(this)">
+                        </div>
+                        <div class="form-group">
+                            <label for="heart_rate">Heart Rate (BPM)</label>
+                            <input type="number" id="heart_rate" name="heart_rate" class="form-control" min="40" max="200">
+                        </div>
+                    </div>
+                    
+                    <!-- Symptoms Selection -->
+                    <h3>Symptoms <span id="selected-symptoms-count" class="badge">0</span></h3>
+                    <p class="form-hint">Select all symptoms you are experiencing:</p>
+                    
+                    <div class="checkbox-group">
+                        <!-- Common Symptoms -->
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="fever" name="symptoms" value="fever" onchange="toggleSymptomSelection(this)">
+                            <label for="fever">Fever</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="cough" name="symptoms" value="cough" onchange="toggleSymptomSelection(this)">
+                            <label for="cough">Cough</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="fatigue" name="symptoms" value="fatigue" onchange="toggleSymptomSelection(this)">
+                            <label for="fatigue">Fatigue</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="headache" name="symptoms" value="headache" onchange="toggleSymptomSelection(this)">
+                            <label for="headache">Headache</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="sore_throat" name="symptoms" value="sore_throat" onchange="toggleSymptomSelection(this)">
+                            <label for="sore_throat">Sore Throat</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="shortness_of_breath" name="symptoms" value="shortness_of_breath" onchange="toggleSymptomSelection(this)">
+                            <label for="shortness_of_breath">Shortness of Breath</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="chest_pain" name="symptoms" value="chest_pain" onchange="toggleSymptomSelection(this)">
+                            <label for="chest_pain">Chest Pain</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="nausea" name="symptoms" value="nausea" onchange="toggleSymptomSelection(this)">
+                            <label for="nausea">Nausea</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="vomiting" name="symptoms" value="vomiting" onchange="toggleSymptomSelection(this)">
+                            <label for="vomiting">Vomiting</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="diarrhea" name="symptoms" value="diarrhea" onchange="toggleSymptomSelection(this)">
+                            <label for="diarrhea">Diarrhea</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="body_aches" name="symptoms" value="body_aches" onchange="toggleSymptomSelection(this)">
+                            <label for="body_aches">Body Aches</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="loss_of_taste" name="symptoms" value="loss_of_taste" onchange="toggleSymptomSelection(this)">
+                            <label for="loss_of_taste">Loss of Taste</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="loss_of_smell" name="symptoms" value="loss_of_smell" onchange="toggleSymptomSelection(this)">
+                            <label for="loss_of_smell">Loss of Smell</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="rash" name="symptoms" value="rash" onchange="toggleSymptomSelection(this)">
+                            <label for="rash">Rash</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="joint_pain" name="symptoms" value="joint_pain" onchange="toggleSymptomSelection(this)">
+                            <label for="joint_pain">Joint Pain</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="dizziness" name="symptoms" value="dizziness" onchange="toggleSymptomSelection(this)">
+                            <label for="dizziness">Dizziness</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="abdominal_pain" name="symptoms" value="abdominal_pain" onchange="toggleSymptomSelection(this)">
+                            <label for="abdominal_pain">Abdominal Pain</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="muscle_weakness" name="symptoms" value="muscle_weakness" onchange="toggleSymptomSelection(this)">
+                            <label for="muscle_weakness">Muscle Weakness</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="blurred_vision" name="symptoms" value="blurred_vision" onchange="toggleSymptomSelection(this)">
+                            <label for="blurred_vision">Blurred Vision</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="confusion" name="symptoms" value="confusion" onchange="toggleSymptomSelection(this)">
+                            <label for="confusion">Confusion</label>
+                        </div>
+                    </div>
+                    
+                    <!-- Medical History -->
+                    <h3>Medical History</h3>
+                    <div class="form-group">
+                        <label for="medical_history">Do you have any pre-existing medical conditions?</label>
+                        <textarea id="medical_history" name="medical_history" class="form-control" rows="3" placeholder="E.g., diabetes, hypertension, asthma, etc."></textarea>
+                    </div>
+                    
+                    <!-- Submit Button -->
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">Get Prediction</button>
+                    </div>
+                </form>
+            </div>
+            
+            <!-- Loading Indicator -->
+            <div id="loading-indicator" class="loading" style="display: none;">
+                <div class="spinner"></div>
+                <p>Analyzing your symptoms...</p>
+            </div>
+            
+            <!-- Results Section -->
+            <div id="results-section" class="results" style="display: none;">
+                <h2>Prediction Results</h2>
+                
+                <div class="prediction-result">
+                    <h3>Predicted Disease: <span id="prediction-result">Loading...</span></h3>
+                    
+                    <div class="prediction-confidence">
+                        <span>Confidence:</span>
+                        <div class="confidence-bar">
+                            <div id="confidence-level" class="confidence-level" style="width: 0%;"></div>
+                        </div>
+                        <span id="confidence-percentage">0%</span>
+                    </div>
+                    
+                    <div id="prediction-details" class="prediction-details">
+                        <!-- Details will be populated by JavaScript -->
+                    </div>
+                    
+                    <div id="alternative-predictions" class="alternative-predictions" style="display: none;">
+                        <!-- Alternative predictions will be populated by JavaScript -->
+                    </div>
+                </div>
+                
+                <!-- Visualization Section -->
+                <div class="visualization">
+                    <h3>Disease Progression Prediction</h3>
+                    <div class="chart-container">
+                        <canvas id="progression-chart"></canvas>
+                    </div>
+                </div>
+                
+                <!-- Medication Suggestions -->
+                <div class="medication-suggestions">
+                    <h3>Suggested Medications</h3>
+                    <p class="disclaimer">Note: These are general suggestions. Always consult with a healthcare professional before taking any medication.</p>
+                    <ul id="medications-list">
+                        <!-- Medications will be populated by JavaScript -->
+                    </ul>
+                </div>
+                
+                <!-- Feedback Section -->
+                <div class="feedback">
+                    <h3>Was this prediction helpful?</h3>
+                    <div class="feedback-options">
+                        <button id="feedback-correct" class="feedback-btn correct">Yes, it was accurate</button>
+                        <button id="feedback-incorrect" class="feedback-btn incorrect">No, it was incorrect</button>
+                    </div>
+                    <div class="form-group">
+                        <label for="feedback-comment">Additional Comments (Optional)</label>
+                        <textarea id="feedback-comment" class="feedback-comment" placeholder="Please provide any additional feedback..."></textarea>
+                    </div>
+                    <button id="feedback-submit" class="btn btn-primary">Submit Feedback</button>
+                </div>
+                
+                <div class="disclaimer-box">
+                    <h4><i class="fas fa-exclamation-triangle"></i> Important Disclaimer</h4>
+                    <p>This prediction is based on the symptoms you provided and is intended for informational purposes only. It is not a substitute for professional medical advice, diagnosis, or treatment. Always seek the advice of your physician or other qualified health provider with any questions you may have regarding a medical condition.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>BioAI</h3>
+                    <p>AI-powered disease prediction platform for early health issue identification.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="prediction.html">Disease Prediction</a></li>
+                        <li><a href="index.html#about">About</a></li>
+                        <li><a href="index.html#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <p>Email: info@bioai.com</p>
+                    <p>Phone: +1 (123) 456-7890</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 BioAI. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/script.js"></script>
+</body>
+</html>

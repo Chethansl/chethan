@@ -1,0 +1,51 @@
+symptom_id,symptom_name,disease_id,disease_name,weight
+1,fever,1,Common Cold,0.4
+2,cough,1,Common Cold,0.6
+3,runny nose,1,Common Cold,0.8
+4,sneezing,1,Common Cold,0.7
+5,sore throat,1,Common Cold,0.5
+6,fever,2,Influenza,0.8
+7,cough,2,Influenza,0.7
+8,body aches,2,Influenza,0.9
+9,fatigue,2,Influenza,0.8
+10,headache,2,Influenza,0.6
+11,fever,3,Pneumonia,0.9
+12,cough,3,Pneumonia,0.8
+13,shortness of breath,3,Pneumonia,0.9
+14,chest pain,3,Pneumonia,0.7
+15,fatigue,3,Pneumonia,0.6
+16,rash,4,Measles,0.9
+17,fever,4,Measles,0.8
+18,cough,4,Measles,0.6
+19,runny nose,4,Measles,0.5
+20,red eyes,4,Measles,0.7
+21,sore throat,5,Strep Throat,0.9
+22,fever,5,Strep Throat,0.7
+23,swollen lymph nodes,5,Strep Throat,0.8
+24,difficulty swallowing,5,Strep Throat,0.8
+25,headache,5,Strep Throat,0.5
+26,joint pain,6,Rheumatoid Arthritis,0.9
+27,joint swelling,6,Rheumatoid Arthritis,0.9
+28,joint stiffness,6,Rheumatoid Arthritis,0.8
+29,fatigue,6,Rheumatoid Arthritis,0.6
+30,fever,6,Rheumatoid Arthritis,0.4
+31,chest pain,7,Coronary Artery Disease,0.9
+32,shortness of breath,7,Coronary Artery Disease,0.8
+33,fatigue,7,Coronary Artery Disease,0.7
+34,nausea,7,Coronary Artery Disease,0.5
+35,sweating,7,Coronary Artery Disease,0.6
+36,abdominal pain,8,Appendicitis,0.9
+37,nausea,8,Appendicitis,0.7
+38,vomiting,8,Appendicitis,0.7
+39,fever,8,Appendicitis,0.6
+40,loss of appetite,8,Appendicitis,0.5
+41,frequent urination,9,Diabetes,0.8
+42,increased thirst,9,Diabetes,0.8
+43,increased hunger,9,Diabetes,0.7
+44,weight loss,9,Diabetes,0.6
+45,fatigue,9,Diabetes,0.6
+46,headache,10,Migraine,0.9
+47,nausea,10,Migraine,0.7
+48,sensitivity to light,10,Migraine,0.8
+49,sensitivity to sound,10,Migraine,0.7
+50,visual disturbances,10,Migraine,0.6
